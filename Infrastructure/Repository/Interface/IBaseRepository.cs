@@ -7,7 +7,10 @@ namespace Infrastructure.Repository.Interface
     {
         Task<ICollection<T>> GetAllAsync();
         Task<T> FindAsync(int id);
-        Task<T> AddAsync(T t);
+        Task<T> InsertAsync(T t);
+        Task<T> UpdateAsync(T t, object key);
+        Task DeleteAsync(object key);
+        Task<int> SaveAsync();
         void Dispose();
     }
 }

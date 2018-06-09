@@ -30,5 +30,25 @@ namespace Domain.Implementation
         {
             return await _unitOfWork.RecipeRepository.FindAsync(id);
         }
+
+        public Task<Recipe> InsertAsync(Recipe entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Recipe> UpdateAsync(Recipe entity, object key)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int> DeleteAsync(object key)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task IBaseService<Recipe>.DeleteAsync(object key)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

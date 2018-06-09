@@ -46,12 +46,14 @@ namespace WebApi
             #region AppService
 
             services.AddTransient<IRecipeAppService, RecipeAppService>();
+            services.AddTransient<IUserAppService, UserAppService>();
 
             #endregion
 
             #region Service
 
             services.AddTransient<IRecipeDomainService, RecipeDomainService>();
+            services.AddTransient<IUserDomainService, UserDomainService>();
 
             #endregion
         }

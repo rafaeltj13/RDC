@@ -25,11 +25,37 @@ namespace Infrastructure.Repository.Implementation
             return await _dataContext.Set<T>().FindAsync(id);
         }
 
-        public virtual async Task<T> AddAsync(T t)
+        public async Task<T> InsertAsync(T t)
         {
             await _dataContext.Set<T>().AddAsync(t);
 
             return t;
+        }
+
+        public async Task<T> UpdateAsync(T t, object key)
+        {
+            if (t == null)
+                return null;
+
+            var exist = await _dataContext.Set<T>().FindAsync(key);
+
+            if (exist != null)
+            {
+                _dataContext.Entry(exist).CurrentValues.SetValues(t);
+            }
+
+            return exist;
+        }
+
+        public async Task DeleteAsync(object key)
+        {
+            var entity = await _dataContext.Set<T>().FindAsync(key);
+            _dataContext.Set<T>().Remove(entity);
+        }
+
+        public async Task<int> SaveAsync()
+        {
+            return await _dataContext.SaveChangesAsync();
         }
 
         #region Disposal
