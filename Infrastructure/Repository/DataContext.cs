@@ -8,7 +8,8 @@ namespace Infrastructure.Repository
     public class DataContext : DbContext
     {
         public DbSet<Recipe> Recipes { get; set; }
-        public DbSet<Recipe> Users { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Product> Products { get; set; }
 
         public DataContext(DbContextOptions<DataContext> options) :
             base(options)
@@ -19,6 +20,7 @@ namespace Infrastructure.Repository
         {
             modelBuilder.ApplyConfiguration(new RecipeMapping());
             modelBuilder.ApplyConfiguration(new UserMapping());
+            modelBuilder.ApplyConfiguration(new ProductMapping());
         }
 
         public virtual void Save()

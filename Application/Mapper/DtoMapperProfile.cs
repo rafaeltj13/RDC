@@ -10,6 +10,7 @@ namespace Application.Mapper
         {
             CreateMap<RecipeDTO, Recipe>();
             CreateMap<UserDTO, User>();
+            CreateMap<ProductDTO, Product>();
         }
     }
 }
