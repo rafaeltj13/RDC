@@ -15,12 +15,8 @@ namespace Infrastructure.Repository.UnitOfWork
 
         #region Repositories
 
-        private IRecipeRepository _recipeRepository;
         private IUserRepository _userRepository;
         private IProductRepository _productRepository;
-
-        public IRecipeRepository RecipeRepository =>
-            _recipeRepository ?? (_recipeRepository = new RecipeRepository(_dataContext));
 
         public IUserRepository UserRepository =>
             _userRepository ?? (_userRepository = new UserRepository(_dataContext));

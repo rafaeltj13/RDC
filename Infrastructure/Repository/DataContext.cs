@@ -7,7 +7,6 @@ namespace Infrastructure.Repository
 {
     public class DataContext : DbContext
     {
-        public DbSet<Recipe> Recipes { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Product> Products { get; set; }
 
@@ -18,7 +17,6 @@ namespace Infrastructure.Repository
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new RecipeMapping());
             modelBuilder.ApplyConfiguration(new UserMapping());
             modelBuilder.ApplyConfiguration(new ProductMapping());
         }

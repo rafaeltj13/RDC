@@ -45,7 +45,6 @@ namespace WebApi
             
             #region AppService
 
-            services.AddTransient<IRecipeAppService, RecipeAppService>();
             services.AddTransient<IUserAppService, UserAppService>();
             services.AddTransient<IProductAppService, ProductAppService>();
 
@@ -53,7 +52,6 @@ namespace WebApi
 
             #region Service
 
-            services.AddTransient<IRecipeDomainService, RecipeDomainService>();
             services.AddTransient<IUserDomainService, UserDomainService>();
             services.AddTransient<IProductDomainService, ProductDomainService>();
 

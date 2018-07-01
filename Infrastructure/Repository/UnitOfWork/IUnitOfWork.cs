@@ -5,7 +5,6 @@ namespace Infrastructure.Repository.UnitOfWork
 {
     public interface IUnitOfWork
     {
-        IRecipeRepository RecipeRepository { get; }
         IUserRepository UserRepository { get; }
         IProductRepository ProductRepository { get; }
 

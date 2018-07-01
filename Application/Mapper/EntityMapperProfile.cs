@@ -8,7 +8,6 @@ namespace Application.Mapper
     {
         public EntityMapperProfile()
         {
-            CreateMap<Recipe, RecipeDTO>();
             CreateMap<User, UserDTO>();
             CreateMap<Product, ProductDTO>();
         }
