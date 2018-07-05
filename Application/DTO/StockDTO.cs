@@ -12,6 +12,6 @@ namespace Application.DTO
         public DateTime? EntryDate { get; set; }
         public string Unit { get; set; }
         public int ProductEntry { get; set; }
-        public int ProduckStock { get; set; }
+        public int ProductStock { get; set; }
     }
 }

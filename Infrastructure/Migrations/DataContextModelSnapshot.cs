@@ -36,16 +36,26 @@ namespace Infrastructure.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("Entities.Recipe", b =>
+            modelBuilder.Entity("Entities.Stock", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Title");
+                    b.Property<DateTime?>("EntryDate");
+
+                    b.Property<int>("ProductEntry");
+
+                    b.Property<int?>("ProductId");
+
+                    b.Property<int>("ProductStock");
+
+                    b.Property<string>("Unit");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Recipes");
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Stocks");
                 });
 
             modelBuilder.Entity("Entities.User", b =>
@@ -62,6 +72,13 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("Entities.Stock", b =>
+                {
+                    b.HasOne("Entities.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId");
                 });
 #pragma warning restore 612, 618
         }

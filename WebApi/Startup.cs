@@ -47,6 +47,7 @@ namespace WebApi
 
             services.AddTransient<IUserAppService, UserAppService>();
             services.AddTransient<IProductAppService, ProductAppService>();
+            services.AddTransient<IStockAppService, StockAppService>();
 
             #endregion
 
@@ -54,6 +55,7 @@ namespace WebApi
 
             services.AddTransient<IUserDomainService, UserDomainService>();
             services.AddTransient<IProductDomainService, ProductDomainService>();
+            services.AddTransient<IStockDomainService, StockDomainService>();
 
             #endregion
         }

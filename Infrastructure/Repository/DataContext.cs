@@ -9,6 +9,7 @@ namespace Infrastructure.Repository
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Stock> Stocks { get; set; }
 
         public DataContext(DbContextOptions<DataContext> options) :
             base(options)
@@ -19,6 +20,7 @@ namespace Infrastructure.Repository
         {
             modelBuilder.ApplyConfiguration(new UserMapping());
             modelBuilder.ApplyConfiguration(new ProductMapping());
+            modelBuilder.ApplyConfiguration(new StockMapping());
         }
 
         public virtual void Save()

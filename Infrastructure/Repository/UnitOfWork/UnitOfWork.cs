@@ -17,12 +17,16 @@ namespace Infrastructure.Repository.UnitOfWork
 
         private IUserRepository _userRepository;
         private IProductRepository _productRepository;
+        private IStockRepository _stockrepository;
 
         public IUserRepository UserRepository =>
             _userRepository ?? (_userRepository = new UserRepository(_dataContext));
 
         public IProductRepository ProductRepository =>
             _productRepository ?? (_productRepository = new ProductRepository(_dataContext));
+
+        public IStockRepository StockRepository =>
+            _stockrepository ?? (_stockrepository = new StockRepository(_dataContext));
 
         #endregion
 

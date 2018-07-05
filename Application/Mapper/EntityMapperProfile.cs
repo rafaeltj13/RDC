@@ -10,6 +10,7 @@ namespace Application.Mapper
         {
             CreateMap<User, UserDTO>();
             CreateMap<Product, ProductDTO>();
+            CreateMap<Stock, StockDTO>();
         }
     }
 }
