@@ -5,8 +5,9 @@ namespace Infrastructure.Repository.UnitOfWork
 {
     public interface IUnitOfWork
     {
-        IRecipeRepository RecipeRepository { get; }
         IUserRepository UserRepository { get; }
+        IProductRepository ProductRepository { get; }
+        IStockRepository StockRepository { get; }
 
         Task SaveAsync();
     }

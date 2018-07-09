@@ -8,8 +8,9 @@ namespace Application.Mapper
     {
         public DtoMapperProfile()
         {
-            CreateMap<RecipeDTO, Recipe>();
             CreateMap<UserDTO, User>();
+            CreateMap<ProductDTO, Product>();
+            CreateMap<StockDTO, Stock>();
         }
     }
 }
