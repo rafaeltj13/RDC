@@ -29,6 +29,12 @@ namespace Application.Implementation
             return AutoMapper.Mapper.Map<ProductDTO>(result);
         }
 
+        public async Task<ICollection<ProductDTO>> GetByFirstLetterAsync(char letter)
+        {
+            var result = await _productService.GetByFirstLetterAsync(letter);
+            return AutoMapper.Mapper.Map<ICollection<ProductDTO>>(result);
+        }
+
         public async Task<ProductDTO> InsertAsync(ProductDTO product)
         {
             var result = await _productService.InsertAsync(AutoMapper.Mapper.Map<Product>(product));

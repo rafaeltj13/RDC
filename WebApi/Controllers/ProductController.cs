@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Application.DTO;
 using Application.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,12 +21,14 @@ namespace WebApi.Controllers
             _productAppService = productAppService;
         }
 
+        [Authorize("Bearer")]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
             return Ok(await _productAppService.GetAllAsync());
         }
 
+        [Authorize("Bearer")]
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
@@ -39,6 +42,14 @@ namespace WebApi.Controllers
             return Ok(product);
         }
 
+        [Authorize("Bearer")]
+        [HttpGet("GetByFirstLetter/{letter}")]
+        public async Task<IActionResult> GetByFirstLetter([FromRoute] char letter)
+        {
+            return Ok(await _productAppService.GetByFirstLetterAsync(letter));
+        }
+
+        [Authorize("Bearer")]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]ProductDTO product)
         {
@@ -52,6 +63,7 @@ namespace WebApi.Controllers
             return Ok(createdProduct);
         }
 
+        [Authorize("Bearer")]
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody]ProductDTO product)
         {
@@ -65,6 +77,7 @@ namespace WebApi.Controllers
             return Ok(updatedProduct);
         }
 
+        [Authorize("Bearer")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {

@@ -41,6 +41,7 @@ namespace WebApi.Controllers
             return Ok(user);
         }
 
+        [Authorize("Bearer")]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]UserDTO user)
         {
@@ -54,6 +55,7 @@ namespace WebApi.Controllers
             return Ok(createdUser);
         }
 
+        [Authorize("Bearer")]
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id,[FromBody]UserDTO user)
         {
@@ -67,6 +69,7 @@ namespace WebApi.Controllers
             return Ok(updatedUser);
         }
 
+        [Authorize("Bearer")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {

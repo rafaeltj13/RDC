@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Application.DTO;
 using Application.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,12 +21,14 @@ namespace WebApi.Controllers
             _stockAppService = stockAppService;
         }
 
+        [Authorize("Bearer")]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
             return Ok(await _stockAppService.GetAllAsync());
         }
 
+        [Authorize("Bearer")]
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
@@ -39,6 +42,7 @@ namespace WebApi.Controllers
             return Ok(stock);
         }
 
+        [Authorize("Bearer")]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]StockDTO stock)
         {
@@ -52,6 +56,7 @@ namespace WebApi.Controllers
             return Ok(createdStock);
         }
 
+        [Authorize("Bearer")]
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody]StockDTO stock)
         {
@@ -65,6 +70,7 @@ namespace WebApi.Controllers
             return Ok(updatedStock);
         }
 
+        [Authorize("Bearer")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
