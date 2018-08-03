@@ -16,6 +16,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System;
 using Microsoft.AspNetCore.Authorization;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace WebApi
 {
@@ -77,6 +78,11 @@ namespace WebApi
                     });
             });
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "RDC API", Version = "v1" });
+            });
+
             services.AddMvc();
 
             services.AddDbContext<DataContext>(options =>
@@ -122,6 +128,11 @@ namespace WebApi
             }
 
             app.UseCors("AllowAllOrigins");
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "RDC API V1");
+            });
 
             app.UseMvc();
         }
