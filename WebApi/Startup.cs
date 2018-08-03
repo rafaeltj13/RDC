@@ -11,6 +11,11 @@ using Infrastructure.Repository;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using Application.Mapper;
+using Application.Configuration.Login;
+using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApi
 {
@@ -25,6 +30,53 @@ namespace WebApi
 
         public void ConfigureServices(IServiceCollection services)
         {
+            #region Login
+
+            var signingConfigurations = new SigningConfigurations();
+            var tokenConfigurations = new TokenConfigurations();
+            new ConfigureFromConfigurationOptions<TokenConfigurations>(
+                Configuration.GetSection("TokenConfigurations"))
+                    .Configure(tokenConfigurations);
+
+            services.AddSingleton(signingConfigurations);
+            services.AddSingleton(tokenConfigurations);
+
+            services.AddAuthentication(authOptions =>
+            {
+                authOptions.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                authOptions.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(bearerOptions =>
+            {
+                var paramsValidation = bearerOptions.TokenValidationParameters;
+                paramsValidation.IssuerSigningKey = signingConfigurations.Key;
+                paramsValidation.ValidAudience = tokenConfigurations.Audience;
+                paramsValidation.ValidIssuer = tokenConfigurations.Issuer;
+
+                paramsValidation.ValidateIssuerSigningKey = true;
+
+                paramsValidation.ValidateLifetime = true;
+
+                paramsValidation.ClockSkew = TimeSpan.Zero;
+            });
+
+            services.AddAuthorization(auth =>
+            {
+                auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
+                    .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
+                    .RequireAuthenticatedUser().Build());
+            });
+
+            #endregion
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllOrigins",
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin().AllowAnyHeader();
+                    });
+            });
+
             services.AddMvc();
 
             services.AddDbContext<DataContext>(options =>
@@ -68,6 +120,8 @@ namespace WebApi
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors("AllowAllOrigins");
 
             app.UseMvc();
         }

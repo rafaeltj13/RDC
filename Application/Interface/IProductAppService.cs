@@ -10,6 +10,7 @@ namespace Application.Interface
     {
         Task<ICollection<ProductDTO>> GetAllAsync();
         Task<ProductDTO> FindAsync(int id);
+        Task<ICollection<ProductDTO>>  GetByFirstLetterAsync(char letter);
         Task<ProductDTO> InsertAsync(ProductDTO product);
         Task<ProductDTO> UpdateAsync(int id, ProductDTO product);
         Task DeleteAsync(int id);

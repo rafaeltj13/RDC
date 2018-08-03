@@ -8,7 +8,7 @@ namespace Infrastructure.Repository.Implementation
 {
     public abstract class BaseRepository<T> : IBaseRepository<T> where T : class
     {
-        private readonly DataContext _dataContext;
+        protected readonly DataContext _dataContext;
 
         protected BaseRepository(DataContext dataContext)
         {

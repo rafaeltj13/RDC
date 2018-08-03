@@ -27,6 +27,11 @@ namespace Domain.Implementation
             return await _unitOfWork.ProductRepository.FindAsync(id);
         }
 
+        public async Task<ICollection<Product>> GetByFirstLetterAsync(char letter)
+        {
+            return await _unitOfWork.ProductRepository.GetByFirstLetterAsync(letter);
+        }
+
         public async Task<Product> InsertAsync(Product entity)
         {
             await _unitOfWork.ProductRepository.InsertAsync(entity);

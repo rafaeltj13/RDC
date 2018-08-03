@@ -8,7 +8,7 @@ namespace Application.DTO
     public class StockDTO
     {
         public int Id { get; set; }
-        public Product Product { get; set; }
+        public ProductDTO Product { get; set; }
         public int ProductId { get; set; }
         public DateTime? EntryDate { get; set; }
         public string Unit { get; set; }

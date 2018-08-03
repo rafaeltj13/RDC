@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Application.DTO;
 using Application.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,6 +21,7 @@ namespace WebApi.Controllers
             _userAppService = userAppService;
         }
 
+        [Authorize("Bearer")]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -39,6 +41,7 @@ namespace WebApi.Controllers
             return Ok(user);
         }
 
+        [Authorize("Bearer")]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]UserDTO user)
         {
@@ -52,6 +55,7 @@ namespace WebApi.Controllers
             return Ok(createdUser);
         }
 
+        [Authorize("Bearer")]
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id,[FromBody]UserDTO user)
         {
@@ -65,6 +69,7 @@ namespace WebApi.Controllers
             return Ok(updatedUser);
         }
 
+        [Authorize("Bearer")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
