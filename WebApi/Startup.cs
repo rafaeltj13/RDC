@@ -68,6 +68,15 @@ namespace WebApi
 
             #endregion
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllOrigins",
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin().AllowAnyHeader();
+                    });
+            });
+
             services.AddMvc();
 
             services.AddDbContext<DataContext>(options =>
@@ -111,6 +120,8 @@ namespace WebApi
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors("AllowAllOrigins");
 
             app.UseMvc();
         }
