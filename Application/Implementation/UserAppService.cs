@@ -28,6 +28,12 @@ namespace Application.Implementation
             return AutoMapper.Mapper.Map<UserDTO>(result);
         }
 
+        public async Task<UserDTO> GetByLoginAsync(string login)
+        {
+            var result = await _userService.GetByLoginAsync(login);
+            return AutoMapper.Mapper.Map<UserDTO>(result);
+        }
+
         public async Task<UserDTO> InsertAsync(UserDTO user)
         {
             var result = await _userService.InsertAsync(AutoMapper.Mapper.Map<User>(user));

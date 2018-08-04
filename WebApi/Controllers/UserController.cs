@@ -28,6 +28,7 @@ namespace WebApi.Controllers
             return Ok(await _userAppService.GetAllAsync());
         }
 
+        [Authorize("Bearer")]
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
@@ -39,6 +40,13 @@ namespace WebApi.Controllers
             }
 
             return Ok(user);
+        }
+
+        [Authorize("Bearer")]
+        [HttpGet("GetByLogin")]
+        public async Task<IActionResult> GetByLogin([FromQuery] string login)
+        {
+            return Ok(await _userAppService.GetByLoginAsync(login));
         }
 
         [Authorize("Bearer")]

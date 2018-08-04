@@ -27,6 +27,11 @@ namespace Domain.Implementation
             return await _unitOfWork.UserRepository.FindAsync(id);
         }
 
+        public async Task<User> GetByLoginAsync(string login)
+        {
+            return await _unitOfWork.UserRepository.GetByLoginAsync(login);
+        }
+
         public async Task<User> InsertAsync(User entity)
         {
             await _unitOfWork.UserRepository.InsertAsync(entity);

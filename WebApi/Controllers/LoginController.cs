@@ -34,7 +34,7 @@ namespace WebApi.Controllers
             bool validCredentials = false;
             if (user != null)
             {
-                var loginUser = _userAppService.FindAsync(user.Id);
+                var loginUser = _userAppService.GetByLoginAsync(user.Login);
 
                 validCredentials = (loginUser != null &&
                     user.Login == loginUser.Result.Login &&
