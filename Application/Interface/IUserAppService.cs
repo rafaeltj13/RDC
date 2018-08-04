@@ -10,6 +10,7 @@ namespace Application.Interface
     {
         Task<ICollection<UserDTO>> GetAllAsync();
         Task<UserDTO> FindAsync(int id);
+        Task<UserDTO> GetByLoginAsync(string login);
         Task<UserDTO> InsertAsync(UserDTO user);
         Task<UserDTO> UpdateAsync(int id, UserDTO user);
         Task DeleteAsync(int id);
