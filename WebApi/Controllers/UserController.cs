@@ -42,14 +42,12 @@ namespace WebApi.Controllers
             return Ok(user);
         }
 
-        [Authorize("Bearer")]
         [HttpGet("GetByLogin")]
         public async Task<IActionResult> GetByLogin([FromQuery] string login)
         {
             return Ok(await _userAppService.GetByLoginAsync(login));
         }
 
-        [Authorize("Bearer")]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]UserDTO user)
         {
