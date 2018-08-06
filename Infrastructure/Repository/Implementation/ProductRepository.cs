@@ -18,7 +18,7 @@ namespace Infrastructure.Repository.Implementation
 
         public async Task<ICollection<Product>> GetByFirstLetterAsync(char letter)
         {
-            return await _dataContext.Set<Product>().FromSql("SELECT * FROM dbo.Products").Where(p => p.Name[0] == letter).ToListAsync();
+            return await _dataContext.Set<Product>().FromSql("SELECT * FROM dbo.Products").Where(p => p.Name[0] == letter).OrderBy(p => p.Name).ToListAsync();
         }
     }
 }
